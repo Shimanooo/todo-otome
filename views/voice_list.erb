@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="/assets/stylesheets/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+  <script>
+    $(function(){
+      $('.js-modal-open').on('click',function(){
+        var btnIndex = $(this).index(); // 何番目のモーダルボタンかを取得
+          $('.js-modal').eq(btnIndex).fadeIn();
+          return false;
+      });
+      $('.js-modal-close').on('click',function(){
+          $('.js-modal').fadeOut();
+          return false;
+      });
+  });
+
+//   $(function () {
+//   // モーダルのボタンをクリックした時
+//   $('.modal_trigger .swiper-slide .modal_btn').on('click', function () {
+//     var btnIndex = $(this).index(); // 何番目のモーダルボタンかを取得
+//     $('.modal_area .modal_box').eq(btnIndex).fadeIn(); // クリックしたモーダルボタンと同じ番目のモーダルを表示する
+//   });
+
+//   // ×やモーダルの背景をクリックした時
+//   $('.modal_close , .modal_bg').click(function () {
+//     $('.modal_box').fadeOut(); // モーダルを非表示にする
+//   });
+// });
+
+//  $(function () {
+//   // モーダルのボタンをクリックした時
+//   $('.js-modal-open').on('click', function () {
+//     var btnIndex = $(this).index(); // 何番目のモーダルボタンかを取得
+//     $('.modal .modal__content').eq(btnIndex).fadeIn(); // クリックしたモーダルボタンと同じ番目のモーダルを表示する
+//   });
+
+//   // ×やモーダルの背景をクリックした時
+//   $('.modal_close , .modal_bg').click(function () {
+//     $('.modal_box').fadeOut(); // モーダルを非表示にする
+//   });
+// });
+
+
+  </script>
+
+
+</head>
+
+<body>
+  <div id="voice_list">
+    <div class="container">
+      <div id="header">
+        <nav>
+          <h1>Todo</h1>
+          <ul>
+            <li><a href="/top">ログアウト</a></li>
+            <li><a href="/voice_list">ボイス集</a></li>
+            <li><a href="/index">トップ</a></li>
+            <li>
+              <a>
+              <% if !current_user.nil? %>
+                <li class="login-account">こんにちは、<%= current_user.name %>さん</li>
+              <% end %>
+            </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+
+      <div class="voice_box">
+        <li id="apple_button">
+          <a class="js-modal-open" href="">
+            <figure>
+              <img class="photo" src="assets/img/apple.jpg" alt="あっぷる">
+              <figcaption>あっぷる</figcaption>
+            </figure>
+          </a>
+        </li>
+
+         <div class="modal js-modal">
+          <div class="modal__content">
+          <div class="modal__bg js-modal-close"></div>
+              <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
+              <a class="js-modal-close" href="">閉じる</a>
+          </div><!--modal__inner-->
+        </div>
+
+
+
+        <li id="oji_button">
+          <a  class="js-modal-open" href="">
+            <figure>
+              <img class="photo" src="assets/img/oji.jpg" alt="おじー">
+              <figcaption>おじー</figcaption>
+            </figure>
+          </a>
+        </li>
+
+          <div class="modal js-modal">
+          <div class="modal__bg js-modal-close"></div>
+          <div class="modal__content">
+              <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
+              <a class="js-modal-close" href="">閉じる</a>
+          </div><!--modal__inner-->
+        </div>
+
+        <li id="kaku_button">
+          <a class="js-modal-open" href="">
+            <figure>
+              <img class="photo" src="assets/img/kaku.jpg" alt="かく">
+              <figcaption>かく</figcaption>
+            </figure>
+          </a>
+        </li>
+
+        <div class="modal js-modal">
+          <div class="modal__bg js-modal-close"></div>
+          <div class="modal__content">
+              <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
+              <a class="js-modal-close" href="">閉じる</a>
+          </div><!--modal__inner-->
+        </div>
+
+        <li id="kamokamo_button">
+          <a  class="js-modal-open" href="">
+            <figure>
+              <img class="photo" src="assets/img/kamokamo.jpg" alt="かもかも">
+              <figcaption>かもかも</figcaption>
+            </figure>
+          </a>
+        </li>
+
+         <div class="modal js-modal">
+          <div class="modal__bg js-modal-close"></div>
+          <div class="modal__content">
+              <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
+              <a class="js-modal-close" href="">閉じる</a>
+          </div><!--modal__inner-->
+        </div>
+
+        <li id="gahaku_button">
+          <a class="js-modal-open" href="">
+            <figure>
+              <img class="photo" src="assets/img/gahaku.jpg" alt="がはく">
+              <figcaption>がはく</figcaption>
+            </figure>
+          </a>
+        </li>
+
+      <div class="modal js-modal">
+          <div class="modal__bg js-modal-close"></div>
+          <div class="modal__content">
+              <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
+              <a class="js-modal-close" href="">閉じる</a>
+          </div><!--modal__inner-->
+        </div>
+
+        <li id="kyami_button">
+          <a class="js-modal-open" href="">
+            <figure>
+              <img class="photo" src="assets/img/kyami.jpg" alt="きゃみ">
+              <figcaption>きゃみ</figcaption>
+            </figure>
+          </a>
+        </li>
+
+        <div class="modal js-modal">
+          <div class="modal__bg js-modal-close"></div>
+          <div class="modal__content">
+              <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
+              <a class="js-modal-close" href="">閉じる</a>
+          </div><!--modal__inner-->
+        </div>
+
+        <li id="k_button">
+          <a class="js-modal-open" href="">
+            <figure>
+              <img class="photo" src="assets/img/nophoto.jpg" alt="K">
+              <figcaption>K</figcaption>
+            </figure>
+          </a>
+        </li>
+
+        <div class="modal js-modal">
+          <div class="modal__bg js-modal-close"></div>
+          <div class="modal__content">
+              <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
+              <a class="js-modal-close" href="">閉じる</a>
+          </div><!--modal__inner-->
+        </div>
+
+        <li id="kenty_button">
+          <a class="js-modal-open" href="">
+            <figure>
+              <img class="photo" src="assets/img/kenty.jpg" alt="Kenty">
+              <figcaption>Kenty</figcaption>
+            </figure>
+          </a>
+        </li>
+
+        <div class="modal js-modal">
+          <div class="modal__bg js-modal-close"></div>
+          <div class="modal__content">
+              <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
+              <a class="js-modal-close" href="">閉じる</a>
+          </div><!--modal__inner-->
+        </div>
+
+        <li id="syunpei_button">
+          <a class="js-modal-open" href="">
+            <figure>
+              <img class="photo" src="assets/img/nophoto.jpg" alt="しゅんぺーさん">
+              <figcaption>しゅんぺーさん</figcaption>
+            </figure>
+          </a>
+        </li>
+
+        <div class="modal js-modal">
+          <div class="modal__bg js-modal-close"></div>
+          <div class="modal__content">
+              <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
+              <a class="js-modal-close" href="">閉じる</a>
+          </div><!--modal__inner-->
+        </div>
+
+        <li id="taity_button">
+          <a class="js-modal-open" href="">
+            <figure>
+              <img class="photo" src="assets/img/taity.jpg" alt="たいてぃー">
+              <figcaption>たいてぃー</figcaption>
+            </figure>
+          </a>
+        </li>
+
+        <div class="modal js-modal">
+          <div class="modal__bg js-modal-close"></div>
+          <div class="modal__content">
+              <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
+              <a class="js-modal-close" href="">閉じる</a>
+          </div><!--modal__inner-->
+        </div>
+
+        <li id="chary_button">
+          <a class="js-modal-open" href="">
+            <figure>
+              <img class="photo" src="assets/img/chary.jpg" alt="ちゃーりー">
+              <figcaption>ちゃーりー</figcaption>
+            </figure>
+          </a>
+        </li>
+
+        <div class="modal js-modal">
+          <div class="modal__bg js-modal-close"></div>
+          <div class="modal__content">
+              <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
+              <a class="js-modal-close" href="">閉じる</a>
+          </div><!--modal__inner-->
+        </div>
+
+        <li id="dume_button">
+          <a class="js-modal-open" href="">
+            <figure>
+              <img class="photo" src="assets/img/nophoto.jpg" alt="づめ">
+              <figcaption>づめ</figcaption>
+            </figure>
+          </a>
+        </li>
+
+        <div class="modal js-modal">
+          <div class="modal__bg js-modal-close"></div>
+          <div class="modal__content">
+              <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
+              <a class="js-modal-close" href="">閉じる</a>
+          </div><!--modal__inner-->
+        </div>
+
+        <li id="toshi_button">
+          <a class="js-modal-open" href="">
+            <figure>
+              <img class="photo" src="assets/img/nophoto.jpg" alt="とし">
+              <figcaption>とし</figcaption>
+            </figure>
+          </a>
+        </li>
+
+        <div class="modal js-modal">
+          <div class="modal__bg js-modal-close"></div>
+          <div class="modal__content">
+              <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
+              <a class="js-modal-close" href="">閉じる</a>
+          </div><!--modal__inner-->
+        </div>
+
+        <li id="niiro_button">
+          <a class="js-modal-open" href="">
+            <figure>
+              <img class="photo" src="assets/img/niiro.jpg" alt="にーろ">
+              <figcaption>にーろ</figcaption>
+            </figure>
+          </a>
+        </li>
+
+        <div class="modal js-modal">
+          <div class="modal__bg js-modal-close"></div>
+          <div class="modal__content">
+              <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
+              <a class="js-modal-close" href="">閉じる</a>
+          </div><!--modal__inner-->
+        </div>
+
+        <li id="sone_button">
+          <a class="js-modal-open" href="">
+            <figure>
+              <img class="photo" src="assets/img/sone.jpg" alt="ねっつ">
+              <figcaption>ねっつ</figcaption>
+            </figure>
+          </a>
+        </li>
+
+        <div class="modal js-modal">
+          <div class="modal__bg js-modal-close"></div>
+          <div class="modal__content">
+              <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
+              <a class="js-modal-close" href="">閉じる</a>
+          </div><!--modal__inner-->
+        </div>
+
+        <li id="hanetyun_button">
+          <a class="js-modal-open" href="">
+            <figure>
+              <img class="photo" src="assets/img/nophoto.jpg" alt="はねちゅん">
+              <figcaption>はねちゅん</figcaption>
+            </figure>
+          </a>
+        </li>
+
+        <div class="modal js-modal">
+          <div class="modal__bg js-modal-close"></div>
+          <div class="modal__content">
+              <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
+              <a class="js-modal-close" href="">閉じる</a>
+          </div><!--modal__inner-->
+        </div>
+
+        <li id="harami_button">
+          <a class="js-modal-open" href="">
+            <figure>
+              <img class="photo" src="assets/img/nophoto.jpg" alt="ハラミ">
+              <figcaption>ハラミ</figcaption>
+            </figure>
+          </a>
+        </li>
+
+        <div class="modal js-modal">
+          <div class="modal__bg js-modal-close"></div>
+          <div class="modal__content">
+              <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
+              <a class="js-modal-close" href="">閉じる</a>
+          </div><!--modal__inner-->
+        </div>
+
+        <li id="pon24_button">
+          <a class="js-modal-open" href="">
+            <figure>
+              <img class="photo" src="assets/img/pon24.jpg" alt="ぽんつよ">
+              <figcaption>ぽんつよ</figcaption>
+            </figure>
+          </a>
+        </li>
+
+        <div class="modal js-modal">
+          <div class="modal__bg js-modal-close"></div>
+          <div class="modal__content">
+              <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
+              <a class="js-modal-close" href="">閉じる</a>
+          </div><!--modal__inner-->
+        </div>
+
+        <li id="misako_button">
+          <a class="js-modal-open" href="">
+            <figure>
+              <img class="photo" src="assets/img/misako.jpg" alt="みさこ">
+              <figcaption>みさこ</figcaption>
+            </figure>
+          </a>
+        </li>
+
+        <div class="modal js-modal">
+          <div class="modal__bg js-modal-close"></div>
+          <div class="modal__content">
+              <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
+              <a class="js-modal-close" href="">閉じる</a>
+          </div><!--modal__inner-->
+        </div>
+
+        <li id="morine_button">
+          <a class="js-modal-open" href="">
+            <figure>
+              <img class="photo" src="assets/img/nophoto.jpg" alt="もりね">
+              <figcaption>もりね</figcaption>
+            </figure>
+          </a>
+        </li>
+
+        <div class="modal js-modal">
+          <div class="modal__bg js-modal-close"></div>
+          <div class="modal__content">
+              <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
+              <a class="js-modal-close" href="">閉じる</a>
+          </div><!--modal__inner-->
+        </div>
+
+        <li id="yaken_button">
+          <a class="js-modal-open" href="">
+            <figure>
+              <img class="photo" src="assets/img/nophoto.jpg" alt="やけん">
+              <figcaption>やけん</figcaption>
+            </figure>
+          </a>
+        </li>
+
+        <div class="modal js-modal">
+          <div class="modal__bg js-modal-close"></div>
+          <div class="modal__content">
+              <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
+              <a class="js-modal-close" href="">閉じる</a>
+          </div><!--modal__inner-->
+        </div>
+
+        <li id="ryujin_button">
+          <a class="js-modal-open" href="">
+            <figure>
+              <img class="photo" src="assets/img/ryujin.jpg" alt="りゅ-じん">
+              <figcaption>りゅうじん</figcaption>
+            </figure>
+          </a>
+        </li>
+
+        <div class="modal js-modal">
+          <div class="modal__bg js-modal-close"></div>
+          <div class="modal__content">
+              <p></p>
+              <a class="js-modal-close" href="">閉じる</a>
+          </div><!--modal__inner-->
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>

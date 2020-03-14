@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>todoアプリ</title>
+  <link rel="stylesheet" href="/assets/stylesheets/style.css">
+
+</head>
+<body>
+<div id="signin">
+  <div class="container">
+    <form class="col-lg-5" action="/sign_in" method="post">
+      <div class="controls">
+        <div class="form-group">
+          <table>
+            <tbody>
+            <tr>
+              <td class="text"><p>名前</p></td>
+              <td class="form"><input class="form-control imput-lg" name="name" placeholder="名前を入力"></td>
+            </tr>
+            <tr>
+              <td class="text"><p>パスワード</p></td>
+              <td class="form"><input class="form-control input-lg" name="password" type="password" placeholder="半角英数字5文字以上10文字以下"></td>
+            </tr>
+            <tr>
+              <td class="text"><p>パスワードを再入力</p></td>
+              <td class="form"><input class="form-control" name="password_confirmation" type="password" placeholder="確認のため再入力"></td>
+            </tr>
+            </tbody>
+          </table>
+          <div class="form-button">
+            <input class="form-submit-button" type="submit" value="ログイン">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</body>

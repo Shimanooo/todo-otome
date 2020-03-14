@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>todoアプリ</title>
+  <link rel="stylesheet" href="/assets/stylesheets/style.css">
+
+</head>
+
+<body>
+
+<div id ="new">
+  <div class="container">
+
+     <div id="header">
+        <nav>
+          <h1>Todo</h1>
+          <ul>
+            <li><a href="/top">ログアウト</a></li>
+            <%# <li><a href="">ボイス集</a></li>
+            <li><a href="/index">トップ</a></li> %>
+            <li>
+						 <a>
+            <% if !current_user.nil? %>
+              <li class="login-account">こんにちは、<%= current_user.name %>さん</li>
+            <% end %>
+          </a>
+       	 	</li>
+          </ul>
+        </nav>
+      </div>
+
+    <div class="add-form">
+      <form action="/tasks" method="post">
+          <div class="add-task-group">
+            <table>
+              <tbody>
+              <tr>
+                <td class="text"><p>タスク</p></td>
+                <td class="add-form-contents"><input type="text" name="title" class="add-form-control imput-lg" placeholder="タスクを入力"></td>
+              </tr>
+              <tr>
+                <td class="text"><p>締切</p></td>
+                <td class="add-form-contents"><input type="text" name="due_date" class="add-form-control imput-lg" placeholder="(例) 2020-3-14"></td>
+              </tr>
+              <tr>
+                <td class="text"><p>カテゴリ</p></td>
+                <td class="add-form-contents">
+                  <select name="list" class="add-form-control">
+                    <% List.all.each do |list| %>
+                      <option value="<%= list.id %>"><%=list.name%></option>
+                    <% end %>
+                  </select>
+                </td>
+
+              </tbody>
+            </table>
+          </div>
+          <div class="form-button">
+            <input class="form-add-button" type="submit" value="登録">
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+</body>

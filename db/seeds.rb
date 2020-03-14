@@ -1,0 +1,1 @@
+List.create([{name: "学校"}, {name: "開発"}, {name: "仕事"}, {name: "プライベート"},{name: "その他"}])

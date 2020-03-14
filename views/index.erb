@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+ 	<title>todoアプリ</title>
+	 <link rel="stylesheet" href="/assets/stylesheets/style.css">
+	 <script type="text/javascript" charset="utf-8" src="sample.js"></script>
+
+</head>
+<body>
+<div id="home">
+	<div class="container">
+		<div id="header">
+			<nav>
+				<h1>Todo</h1>
+				<ul>
+					<li><a href="/top">ログアウト</a></li>
+					<%# <li><a href="/voice_list">ボイス集</a></%#> %>
+					<%# <li><a href="/index">トップ</a></li> %>
+					<li>
+						 <a>
+            <% if !current_user.nil? %>
+              <li class="login-account">こんにちは、<%= current_user.name %>さん</li>
+            <% end %>
+          </a>
+       	 	</li>
+				</ul>
+			</nav>
+		</div>
+
+		<div id="sidebar">
+			<div class="sidebar-contents">
+				<ul class="list-group">
+					<%= erb :_count_due, locals: {title: "トップ", url: "/", tasks: Task.all} %>
+					<%= erb :_count_due, locals: {title: "今日", url: "/", tasks: Task.all} %>
+					<%= erb :_count_due, locals: {title: "締切近い", url: "/", tasks: Task.all} %>
+					<%= erb :_count_due, locals: {title: "締切過ぎた", url: "/tasks/over", tasks: Task.all} %>
+					<%# <li class="list-group-item"><a href="/tasks/done">Done</a></li> %>
+					<% @lists.each do |list| %>
+						<%= erb :_count_due, locals: {title: list.name, url: "/?list=#{list.id}", tasks: list.tasks} %>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+
+		<div id="main">
+			<div class="main-contents">
+			<div class="button">
+					<a class="add-bottun" href="/tasks/new">新しいタスクを追加</a>
+					<input id="button" type="submit" value="応援">
+			</div>
+
+					<table class="list">
+						<thead>
+							<tr>
+								<th class="task">タスク</th>
+								<th>締め切り</th>
+								<th>Done</th>
+								<th>削除</th>
+								<th>編集</th>
+								<%# <th>備考</th>
+								<th>重要？</th> %>
+							</tr>
+						</thead>
+						<tbody>
+							<% @tasks.each do |task| %>
+								<tr>
+									<td><%= CGI.escapeHTML(task.title) %></td>
+									<td><%= task.due_date %></td>
+									<td>
+										<% unless  task.completed %>
+											<form action="/tasks/<%= task.id %>/done" method="post">
+												<input id="Done" type="submit" value="Done!">
+											</form>
+										<% else %>
+											Done!
+										<% end %>
+									</td>
+									<td>
+										<form action="/tasks/<%= task.id %>/delete" method="post">
+											<input type="submit" value="削除">
+										</form>
+									</td>
+									<td><a href="/tasks/<%= task.id %>/edit">編集</a></td>
+									<td>
+										<% unless task.completed %>
+											<% if task.remained_days  < 0 %>
+												締切すぎた
+											<% elsif task.remained_days == 0%>
+												今日締切
+											<% elsif task.remained_days < 7 %>
+												締切近い
+											<% end %>
+										<% end %>
+									</td>
+									<td>
+										<a href="/tasks/<%= task.id %>/star" style="
+											<% if task.star %>
+												background-color:#D94562;
+											<% else %>
+												background-color:white;
+											<% end %>
+												border: 1px solid gray;
+												border-radius: 50px;
+												width: 13px;
+												height: 13px;
+												display: block;
+										"></a>
+									</td>
+								</tr>
+							<% end %>
+							<%# <tr><td colspan="6"><a href="/tasks/new">新しいタスクを追加</a></td></tr> %>
+						</tbody>
+					</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	var button = document.getElementById('button'),
+		audioArr = [
+			'assets/voice/apple/fight_1.mp3',
+			'assets/voice/apple/fight_2.mp3',
+			'assets/voice/apple/fight_free.mp3',
+			'assets/voice/misako/fight_1.mp3',
+			'assets/voice/misako/fight_2.mp3',
+			'assets/voice/misako/fight_3.mp3',
+			'assets/voice/misako/fight_4.mp3',
+			'assets/voice/misako/fight_5.mp3',
+			'assets/voice/razona/fight_1.mp3',
+			'assets/voice/razona/fight_2.mp3',
+			'assets/voice/sone/fight_1.mp3',
+			'assets/voice/sone/fight_2.mp3',
+			'assets/voice/sone/fight_3.mp3',
+			'assets/voice/sone/fight_4.mp3',
+			'assets/voice/pontsuyo/fight_1.mp3',
+			'assets/voice/pontsuyo/fight_2.mp3',
+			'assets/voice/pontsuyo/fight_3.mp3',
+			'assets/voice/hane/fight_1.mp3',
+			'assets/voice/hane/fight_2.mp3',
+			'assets/voice/hane/fight_3.mp3',
+			'assets/voice/kyami/fight_1.mp3',
+			'assets/voice/kyami/fight_2.mp3',
+			'assets/voice/kyami/fight_3.mp3',
+			'assets/voice/syunpei/fight_1.mp3',
+			'assets/voice/syunpei/fight_2.mp3',
+		];
+
+	var playAudio = function () {
+		var audio = new Audio(),
+			num = Math.floor(Math.random() * audioArr.length);
+
+		if (num == audioArr.length) {
+			num = audioArr.length - 1;
+		}
+		audio.src = audioArr[num];
+		audio.play();
+	}
+
+	button.addEventListener('click', function () {
+		playAudio();
+	}, false);
+</script>
+
+<script>
+var button = document.getElementById('Done'),
+		audioArr = [
+			'assets/voice/apple/finish_1.mp3',
+			'assets/voice/apple/finish_2.mp3',
+			'assets/voice/apple/finish_3.mp3',
+			'assets/voice/razona/finish_1.mp3',
+			'assets/voice/razona/finish_2.mp3',
+			'assets/voice/razona/finish_2.mp3',
+			'assets/voice/pontsuyo/finish_1.mp3',
+			'assets/voice/pontsuyo/finish_2.mp3',
+			'assets/voice/pontsuyo/finish_3.mp3',
+			'assets/voice/hane/finish_1.mp3',
+			'assets/voice/hane/finish_2.mp3',
+			'assets/voice/hane/finish_3.mp3',
+			'assets/voice/kyami/finish_1.mp3',
+			'assets/voice/kyami/finish_2.mp3',
+			'assets/voice/kyami/finish_3.mp3',
+			'assets/voice/sone/finish_1.mp3',
+			'assets/voice/sone/finish_2.mp3',
+			'assets/voice/sone/finish_3.mp3',
+			'assets/voice/syunpei/finish_1.mp3',
+			'assets/voice/syunpei/finish_2.mp3',
+			'assets/voice/syunpei/finish_3.mp3',
+		];
+
+		var playAudio = function () {
+		var audio = new Audio(),
+			num = Math.floor(Math.random() * audioArr.length);
+
+		if (num == audioArr.length) {
+			num = audioArr.length - 1;
+		}
+		audio.src = audioArr[num];
+		audio.play();
+	}
+
+	button.addEventListener('click', function () {
+		playAudio();
+	}, false);
+</script>
+
+</body>
+</html>
